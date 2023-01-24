@@ -44,12 +44,12 @@ int _printf(const char *format, ...)
 				{
 					p[length - j] = *(ptr - j);
 				}
-				count += write(1, p, strlen(p));
+				count += write(1, p, length);
 			}
 			if (format[i] == '%')
 				count += write(1, &format[i], 1);
 		}
-		else	
+		else
 			count += write(1, &format[i], 1);
 	}
 	va_end(args);
