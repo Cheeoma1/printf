@@ -33,7 +33,7 @@ int _printf(const char *format, ...)
 			}
 			if (format[i] == 's')
 			{
-				ptr = va_arg(args, char*);
+				ptr = va_arg(args, char *);
 				while (*ptr != '\0')
 				{
 					length++;
@@ -45,6 +45,7 @@ int _printf(const char *format, ...)
 					p[length - j] = *(ptr - j);
 				}
 				count += write(1, p, length);
+				free(p);
 			}
 			if (format[i] == '%')
 				count += write(1, &format[i], 1);
@@ -55,6 +56,5 @@ int _printf(const char *format, ...)
 			count += write(1, &format[i], 1);
 	}
 	va_end(args);
-	free(p);
 	return (count);
 }
