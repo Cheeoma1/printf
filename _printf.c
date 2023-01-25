@@ -34,16 +34,21 @@ int _printf(const char *format, ...)
 			if (format[i] == 's')
 			{
 				ptr = va_arg(args, char *);
-				while (*ptr != '\0')
+				if (ptr == NULL)
+					count += write(1, "(null)", 6);
+				else
 				{
-					length++;
-					ptr++;
+					while (*ptr != '\0')
+					{
+						length++;
+						ptr++;
+					}
+					p = malloc((length + 1) * sizeof(char));
+					for (j = 0; j < (length + 1); j++)
+						p[length - j] = *(ptr - j);
+					count += write(1, p, length);
+					free(p);
 				}
-				p = malloc((length + 1) * sizeof(char));
-				for (j = 0; j < (length + 1); j++)
-					p[length - j] = *(ptr - j);
-				count += write(1, p, length);
-				free(p);
 			}
 			if (format[i] == '%')
 				count += write(1, &format[i], 1);
