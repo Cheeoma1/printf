@@ -1,6 +1,6 @@
-#include <limits.h>
-
 #include <stdio.h>
+
+#include <stdlib.h>
 
 #include "main.h"
 
@@ -12,7 +12,7 @@
  *
  *   *
  *
- *    * Return: Always 0
+ *    * Return: 0 on success, error code otherwise
  *
  *     */
 
@@ -20,14 +20,28 @@ int main(void)
 
 {
 
-	  int n = _printf("this test%c 22\n", '1');
-
-	    printf("\nn = %d \n", n);
+		int len, len2;
 
 
 
-	      return (0);
+			len = _printf("%c%cth %s%s a%cg%s: Y%sou %s no%ching%s Snow.%c", 'W', 'i', "some ", "more", 'r', "s", "", "know", 't', ", Jon", '\n');
+
+				len2 = printf("%c%cth %s%s a%cg%s: Y%sou %s no%ching%s Snow.%c", 'W', 'i', "some ", "more", 'r', "s", "", "know", 't', ", Jon", '\n');
+
+					fflush(stdout);
+
+						if (len != len2)
+
+								{
+
+											printf("Lengths differ.\n");
+
+													fflush(stdout);
+
+															return (1);
+
+																}
+
+							return (0);
 
 }
-
-
